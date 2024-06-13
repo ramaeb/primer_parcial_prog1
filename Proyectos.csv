@@ -1,11 +1,52 @@
 id,Nombre del Proyecto,Descripcion,Fecha de inicio,Fecha de Fin,Presupuesto,Estado
 1,Plataforma de Gestion Empresarial,Sistema de gestion de recursos empresariales para mejorar la eficiencia operativa,13-10-2023,17-04-2025,42931805.00,Activo
-2,Sistema de Planificacion de Recursos,Desarrollo de un sistema avanzado de planificacion de recursos empresariales,17-07-2023,18-05-2025,642055083.00,Activo
-3,Sistema de Informacion Epidemiologica,Plataforma para el seguimiento y analisis de datos epidemiologicos,14-06-2023,02-02-2024,850312588.00,Cancelado
-4,Red de Transporte Publico,Mejora y ampliacion de la infraestructura de transporte publico,30-03-2023,24-07-2023,937383174.00,Finalizado
+2,Sistema de Planificacion de Recursos,Desarrollo de un sistema avanzado de planificacion de recursos empresariales,17-07-2023,18-05-2025,642055083.00,Cancelado
+3,Sistema de Informacion Epidemiologica,Plataforma para el seguimiento y analisis de datos epidemiologicos,14-06-2023,02-02-2024,850312588.00,Activo
+4,Red de Transporte Publico,Mejora y ampliacion de la infraestructura de transporte publico,30-03-2023,24-07-2023,937383174.00,Cancelado
 5,Royal Guard Tales,La mejor obra de ficcion jamas creada.,06-06-2021,03-02-2030,149912234.00,Activo
 6,Laboratorio de Microbiologia,Investigacion y desarrollo en microbiologia aplicada,13-07-2023,07-10-2025,325746996.00,Activo
-7,Planificacion de Sucesion,Desarrollo de un sistema para la planificacion de la sucesion en empresas,01-01-2023,20-05-2023,231786436.00,Cancelado
-8,Sistema de Gestion de Documentos,Desarrollo de un sistema para la gestion y archivo de documentos,06-09-2023,19-05-2023,65296214.00,Finalizado
-9,Investigacion de Trastornos del Sueño,Estudio y tratamiento de diversos trastornos del suenio,23-05-2023,03-08-2023,555060646.00,Finalizado
-10,Sistema de Incendios Extremo,Desarrollo de un sistema avanzado de prevencion y control de incendios,14-02-2023,03-04-2023,240045465.00,Cancelado
+7,Planificacion de Sucesion,Desarrollo de un sistema para la planificacion de la sucesion en empresas,01-01-2023,20-05-2023,231786436.00,Activo
+8,Sistema de Gestion de Documentos,Desarrollo de un sistema para la gestion y archivo de documentos,06-09-2023,19-05-2023,65296214.00,Cancelado
+9,Investigacion de Trastornos del Sueño,Estudio y tratamiento de diversos trastornos del suenio,23-05-2023,03-08-2023,555060646.00,Activo
+10,Sistema de Incendios Extremo,Desarrollo de un sistema avanzado de prevencion y control de incendios,14-02-2023,03-04-2023,240045465.00,Activo
+11,Desarrollo de Aplicacion Movil,Creación de una aplicación móvil para mejorar la interacción con los clientes,09-08-2023,12-12-2023,12000000.00,Activo
+12,Red de Energia Sostenible,Ampliación y modernización de la red eléctrica utilizando fuentes de energía renovable,20-04-2023,30-09-2025,850000000.00,Activo
+13,Plataforma de E-learning,Desarrollo de una plataforma online para educación a distancia,05-05-2023,05-05-2025,5000000.00,Activo
+14,Sistema de Monitoreo Ambiental,Implementación de un sistema para monitoreo y control de la calidad del aire y del agua,15-09-2023,15-09-2024,15000000.00,Activo
+15,Proyecto de Investigación en Inteligencia Artificial,Investigación en técnicas avanzadas de inteligencia artificial,01-03-2023,01-03-2026,200000000.00,Activo
+16,Desarrollo de Videojuego Educativo,Creación de un videojuego para el aprendizaje de matemáticas,10-10-2023,10-10-2024,3000000.00,Activo
+17,Plataforma de Reservas de Hoteles,Desarrollo de una plataforma online para realizar reservas de hoteles,07-07-2023,07-07-2025,10000000.00,Activo
+18,Proyecto de Rehabilitación Urbana,Rehabilitación de áreas urbanas degradadas,20-11-2023,20-11-2024,25000000.00,Activo
+19,Investigación en Energías Renovables,Estudio y desarrollo de nuevas tecnologías en el campo de las energías renovables,01-12-2023,01-12-2025,80000000.00,Activo
+20,Desarrollo de Software de Gestión de Proyectos,Creación de un software para la gestión eficiente de proyectos,25-06-2023,25-06-2024,7000000.00,Activo
+21,Proyecto de Conservación de Especies en Peligro,Preservación y protección de especies en peligro de extinción,14-08-2023,14-08-2025,40000000.00,Activo
+22,Plataforma de Entrega de Comida a Domicilio,Desarrollo de una aplicación para la entrega de comida a domicilio,03-09-2023,03-09-2024,12000000.00,Activo
+23,Investigación en Cáncer Infantil,Estudio y desarrollo de tratamientos para el cáncer infantil,22-01-2023,22-01-2025,300000000.00,Activo
+24,Desarrollo de Sistemas de Seguridad Biométrica,Creación de sistemas avanzados de seguridad basados en biometría,18-04-2023,18-04-2024,15000000.00,Activo
+25,Proyecto de Agricultura Sostenible,Implementación de prácticas agrícolas sostenibles para mejorar la producción y reducir el impacto ambiental,30-05-2023,30-05-2025,45000000.00,Activo
+26,Red de Transporte Inteligente,Modernización de la infraestructura de transporte utilizando tecnologías inteligentes,12-07-2023,12-07-2025,60000000.00,Activo
+27,Plataforma de Asesoramiento Financiero,Desarrollo de una plataforma para ofrecer asesoramiento financiero personalizado,19-09-2023,19-09-2025,10000000.00,Activo
+28,Proyecto de Biotecnología,Investigación y desarrollo de aplicaciones biotecnológicas en medicina y agricultura,05-11-2023,05-11-2025,120000000.00,Activo
+29,Sistema de Monitoreo de Tráfico,Implementación de un sistema para monitorear y gestionar el tráfico urbano,08-12-2023,08-12-2024,18000000.00,Activo
+30,Desarrollo de Sistema de Telemedicina,Creación de un sistema para la prestación de servicios médicos a distancia,11-02-2023,11-02-2024,9000000.00,Activo
+31,Proyecto de Reciclaje Urbano,Implementación de programas de reciclaje en áreas urbanas,24-04-2023,24-04-2025,3000000.00,Activo
+32,Plataforma de Comercio Electrónico,Desarrollo de una plataforma online para el comercio electrónico,16-06-2023,16-06-2024,20000000.00,Activo
+33,Investigación en Inteligencia Artificial,Estudio y desarrollo de nuevas técnicas de inteligencia artificial,02-08-2023,02-08-2025,80000000.00,Activo
+34,Proyecto de Eficiencia Energética,Implementación de medidas para mejorar la eficiencia energética en edificios y empresas,09-09-2023,09-09-2024,25000000.00,Activo
+35,Desarrollo de Aplicación de Salud Mental,Creación de una aplicación móvil para el seguimiento y tratamiento de la salud mental,14-10-2023,14-10-2024,7000000.00,Activo
+36,Proyecto de Investigación en Nanotecnología,Investigación en nanotecnología para el desarrollo de nuevos materiales y dispositivos,20-12-2023,20-12-2024,35000000.00,Activo
+37,Plataforma de Gestión de Proyectos de Construcción,Desarrollo de una plataforma online para la gestión de proyectos de construcción,01-02-2023,01-02-2025,15000000.00,Activo
+38,Investigación en Genética,Estudio y análisis de la genética humana y su aplicación en medicina,03-03-2023,03-03-2025,40000000.00,Activo
+39,Proyecto de Desarrollo Urbano,Desarrollo de infraestructura y servicios en áreas urbanas,05-05-2023,05-05-2024,80000000.00,Activo
+40,Desarrollo de Plataforma de Aprendizaje de Idiomas,Creación de una plataforma online para el aprendizaje de idiomas,07-07-2023,07-07-2025,10000000.00,Activo
+41,Proyecto de Investigación en Energía Nuclear,Investigación en energía nuclear para aplicaciones médicas y energéticas,09-09-2023,09-09-2025,200000000.00,Activo
+42,Plataforma de Gestión de Flotas,Desarrollo de una plataforma para la gestión eficiente de flotas de vehículos,11-11-2023,11-11-2024,12000000.00,Activo
+43,Investigación en Medicina Regenerativa,Estudio y desarrollo de terapias basadas en medicina regenerativa,13-01-2023,13-01-2025,30000000.00,Activo
+44,Proyecto de Desarrollo de Software Educativo,Creación de software educativo para el apoyo al aprendizaje en niños,15-03-2023,15-03-2024,6000000.00,Activo
+45,Desarrollo de Sistema de Reservas de Vuelos,Creación de una plataforma online para reservas de vuelos,17-05-2023,17-05-2025,9000000.00,Activo
+46,Proyecto de Investigación en Cambio Climático,Estudio de los efectos del cambio climático y desarrollo de medidas de mitigación,19-07-2023,19-07-2025,25000000.00,Activo
+47,Plataforma de Gestión de Recursos Humanos,Desarrollo de una plataforma online para la gestión de recursos humanos,21-09-2023,21-09-2024,18000000.00,Activo
+48,Investigación en Inteligencia Artificial Avanzada,Estudio y desarrollo de sistemas de inteligencia artificial avanzada,23-11-2023,23-11-2025,70000000.00,Activo
+49,Proyecto de Recuperación de Ecosistemas,Restauración y conservación de ecosistemas dañados,25-01-2023,25-01-2025,35000000.00,Activo
+50,Desarrollo de Sistema de Gestión de Contenidos,Creación de un sistema para la gestión eficiente de contenidos web,27-03-2023,27-03-2024,14000000.00,Activo
+51,Proyecto de Recuperación de Ecosistemas,Restauración y conservación de ecosistemas dañados,25-01-2023,25-01-2025,35000000.00,Activo

@@ -31,7 +31,7 @@ def valida_proyectos_activos(proyectos:list[dict]):
         if cont > 50:
             #print("ALERTA! LIMITE DE PROYECTOS ALCANZADO \nElimine un proyecto activo para seguir agregando.")
             return True
-        
+    return False
 #Verifica nombre del proyecto
 def verifica_nombre_proyecto():
     while True:
@@ -43,7 +43,7 @@ def verifica_nombre_proyecto():
 def verifica_descripcion():
     while True:
         descripcion = input("Ingrese descripcion del proyecto: ")
-        if (len(descripcion) < 200) and (descripcion.isalpha()):
+        if (len(descripcion) < 200):
             return descripcion
 
 def verifica_presupuesto():
@@ -100,11 +100,8 @@ def ingresa_proyecto(proyectos:list[dict]):
     nuevo_proyecto["Presupuesto"] = presupuesto
     nuevo_proyecto["Estado"] = "Activo"
     
-    return print(nuevo_proyecto)
+    return nuevo_proyecto
 
-    
-    
-ingresa_proyecto(convierte_csv_dict('Proyectos.csv'))
 
 def imprimir_menu():
     print("1. Ingresar proyecto")
@@ -118,26 +115,73 @@ def imprimir_menu():
     print("9. Retomar proyecto")
     print("12. Salir")
 
-def menu_ingresos():
-    opcion = input("Elija su opcion: ")
-    match opcion:
-        case "1":
-            ingresa_proyecto(convierte_csv_dict('Proyectos.csv'))
-        case "2":
-            pass
-        case "3":
-            pass
-        case "4":
-            pass
-        case "5":
-            pass
-        case "6":
-            pass
-        case "7":
-            pass
-        case "8":
-            pass
-        case "9":
-            pass
-        case "12":
-            pass
+
+def opcion_menu_1():
+    datos_dict = convierte_csv_dict('Proyectos.csv')
+    if valida_proyectos_activos(datos_dict) == False:
+        nuevo_proyecto = ingresa_proyecto(convierte_csv_dict('Proyectos.csv'))
+        datos_dict.append(nuevo_proyecto)
+    else:
+        print('ERROR, PROYECTOS ACTIVOS SUPERAN LOS 50.')
+        sigue = True
+    continuar = input('Desea seguir ingresando? S/N: ')
+    if continuar == "S":
+        sigue = True
+    elif continuar == "N":
+        sigue = False
+    else:
+        sigue = False
+    return sigue,datos_dict
+
+
+def opcion_menu_2(datos_dict:list[dict]):
+
+    id_busqueda = input("Ingrese la ID del proyecto: ")
+    if id_busqueda.isnumeric():
+        id_busqueda = int(id_busqueda)
+    
+    print("1- Modificar nombre: ")
+    print("2- Modificar Descripcion: ")
+    print("3- Modificar Fecha de inicio: ")
+    print("4- Modificar Fecha de Fin: ")
+    print("5- Modificar Presupuesto: ")
+    print("6- Modificar Estado: ")
+    opcion = input("Ingrese la opcion: ")
+    datos_dict[]
+    while True:
+        match opcion:
+            case "1":
+                
+
+
+def menu_ingresos(datos_dict:list[dict]):
+    while True:
+        imprimir_menu()
+        opcion = input("Elija su opcion: ")
+        match opcion:
+            case "1":
+                while True:
+                    sigue,datos_dict = opcion_menu_1()
+                    if sigue == True:
+                        continue
+                    else:
+                        break
+            case "2":
+                pass
+            case "3":
+                pass
+            case "4":
+                pass
+            case "5":
+                pass
+            case "6":
+                pass
+            case "7":
+                pass
+            case "8":
+                pass
+            case "9":
+                pass
+            case "12":
+                break
+menu_ingresos()
