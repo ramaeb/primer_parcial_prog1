@@ -1,8 +1,11 @@
 from datetime import datetime
 import json
+
+
 def convierte_csv_dict(path:str):
     '''
-    Devuelve DATOS
+    Recibe la direccion del csv
+    Devuelve DATOS en forma de lista[dict]
     '''
     datos = []
     archivo = open(path,'r+')
@@ -23,6 +26,7 @@ def convierte_csv_dict(path:str):
 def valida_proyectos_activos(proyectos:list[dict]):
     '''
     Devuelve TRUE si se pasa de los 50 proyectos.
+    False si no se pasa.
     '''
 
     cont = 0
@@ -34,7 +38,13 @@ def valida_proyectos_activos(proyectos:list[dict]):
             return True
     return False
 #Verifica nombre del proyecto
+
+
 def verifica_nombre_proyecto():
+    '''
+    Pide un nombre con 'INPUT'
+    Verifica que sea alfabetico y no supere los 30 caracteres
+    '''
     while True:
         nombre = input("Ingrese nombre del proyecto:")
         if (len(nombre) < 30) and (nombre.isalpha()):
@@ -42,12 +52,23 @@ def verifica_nombre_proyecto():
 
 #Verif descripcion
 def verifica_descripcion(mensaje):
+    '''
+    Pide un nombre con 'INPUT'
+    Verifica que no supere los 200 caracteres
+    DEVUELVE: descripcion
+    '''
     while True:
         descripcion = input(mensaje)
         if (len(descripcion) < 200):
             return descripcion
 
+
 def verifica_presupuesto():
+    '''
+    Pide un presupuesto con 'INPUT'
+    Verifica que sea int y sea menor que 500000
+
+    '''
     while True:
         presupuesto = input("Ingrese presupuesto del proyecto: ")
         if (presupuesto.isnumeric()):
@@ -79,11 +100,13 @@ def ingreso_fecha_inicio_fin():
         except:
             print("FECHA INVALIDA")
 
-def agrega_proyecto(path:str):
-    pass
-
 
 def ingresa_proyecto(proyectos:list[dict]):
+    '''
+    Ingresa nuevo proyecto, PIDE proyectos
+    Pide cada uno de los valores a agregar en un nuevo proyecto
+    DEVUELVE: el nuevo proyecto
+    '''
     nuevo_proyecto = {}
     nombre = verifica_nombre_proyecto()
     descripcion = verifica_descripcion('Ingrese descripcion: ')
@@ -106,6 +129,9 @@ def ingresa_proyecto(proyectos:list[dict]):
 
 
 def imprimir_menu():
+    '''
+    Imprime el menu de opciones.
+    '''
     print("1. Ingresar proyecto")
     print("2. Modificar proyecto")
     print("3. Cancelar proyecto")
@@ -115,10 +141,22 @@ def imprimir_menu():
     print("7. Buscar proyecto por nombre")
     print("8. Ordenar proyectos")
     print("9. Retomar proyecto")
+    print("10.Generar un reporte con todos los proyectos que superen ese presupuesto.")
+    print("11.Realizar un informe con las mismas características que el punto anterior.")
     print("12. Salir")
+    print("13.R) Obtener el/los proyectos activos")
+    print("14.B)Mostrar los proyectos activos que duren menos de 3 años")
 
 
 def opcion_menu_1(path:str):
+    '''
+    Opcion 1
+    RECIBE: archivo csv
+    Chequea si los proyectos activos superan los 50.
+    En el caso que no, permite el ingreso de un nuevo proyecto.
+    DEVUELVE: sigue: valor para seguir ingresando
+    datos_dict: DATOS list[dict] 
+    '''
     datos_dict = convierte_csv_dict(path)
     if valida_proyectos_activos(datos_dict) == False:
         nuevo_proyecto = ingresa_proyecto(convierte_csv_dict(path))
@@ -137,6 +175,11 @@ def opcion_menu_1(path:str):
 
 
 def modificar_estado():
+    '''
+    NO PIDE
+    Con un input pide el nuevo estado del proyecto a agregar:
+    SIN RETORNO
+    '''
     while True:
         estado = input("Ingrese el nuevo estado: ")
         if estado == ("Activo" or "Cancelado" or "Finalizado"):
@@ -145,71 +188,116 @@ def modificar_estado():
             print("Ingrese un valor valido:")
 
 def pide_id(datos_dict):
+    '''
+    PIDE: lista de datos con proyectos
+    Vuelve a pedir mediante un input la ID del proyecto 
+    para realizar su busqueda
+    Devuelve: el proyecto encontrado
+    '''
     id_busqueda = input("Ingrese la ID del proyecto: ")
     if id_busqueda.isnumeric():
         id_busqueda = int(id_busqueda)
         for i in range(len(datos_dict)):
             if id_busqueda == int(datos_dict[i]["id"]):
                 proyecto_mod = datos_dict[i]
+            else:
+                proyecto_mod = "ERROR ID NO ENCONTRADA"
+    else:
+        proyecto_mod = "ERROR ID NO ENCONTRADA"
     return proyecto_mod
 
 
 def opcion_menu_2(path:str):
+    '''
+
+    PIDE el archivo csv con los datos 
+    Luego pide una id con el input
+    Si la id no se encuentra vuelve al menu de opciones original.
+    en el caso que la id se encuentre DESPLIEGA un MENU nuevo
+    Dejando que se ingresen las modificaciones deseadas.
+
+    DEVUELVE:LOS DATOS MODIFICADOS
+    '''
     datos_dict = convierte_csv_dict(path)
     proyecto_mod = pide_id(datos_dict)
-    print("1- Modificar nombre:")
-    print("2- Modificar Descripcion:")
-    print("3- Modificar Fecha de inicio y fin:")
-    print("4- Modificar Presupuesto:")
-    print("5- Modificar Estado:")
-    print("6- Salir:")
-    opcion = input("Ingrese la opcion: ")
+    if proyecto_mod != "ERROR ID NO ENCONTRADA":
+        print("1- Modificar nombre:")
+        print("2- Modificar Descripcion:")
+        print("3- Modificar Fecha de inicio y fin:")
+        print("4- Modificar Presupuesto:")
+        print("5- Modificar Estado:")
+        print("6- Salir:")
+        opcion = input("Ingrese la opcion: ")
 
-    while True:
-        match opcion:
-            case "1":
-                proyecto_mod["Nombre del Proyecto"] = verifica_nombre_proyecto()
-                break
-            case "2":
-                proyecto_mod["Descripcion"] = verifica_descripcion('Ingrese descripcion')
-                break
-            case "3":
-                proyecto_mod["Fecha de inicio"],proyecto_mod["Fecha de Fin"] = ingreso_fecha_inicio_fin()
-                break
-            case "4":
-                proyecto_mod["Presupuesto"] = verifica_presupuesto()
-                break
-            case "5":
-                proyecto_mod["Estado"] = modificar_estado()
-                break
-            case "6":
-                break
+        while True:
+            match opcion:
+                case "1":
+                    proyecto_mod["Nombre del Proyecto"] = verifica_nombre_proyecto()
+                    break
+                case "2":
+                    proyecto_mod["Descripcion"] = verifica_descripcion('Ingrese descripcion')
+                    break
+                case "3":
+                    proyecto_mod["Fecha de inicio"],proyecto_mod["Fecha de Fin"] = ingreso_fecha_inicio_fin()
+                    break
+                case "4":
+                    proyecto_mod["Presupuesto"] = verifica_presupuesto()
+                    break
+                case "5":
+                    proyecto_mod["Estado"] = modificar_estado()
+                    break
+                case "6":
+                    break
+    else:
+        print("ID NO ENCONTRADA")
     return datos_dict
 
 
 def opcion_menu_3(path):
+    '''
+    RECIBE: la ruta del archivo csv,
+    PIDE LA ID PARA CAMBIAR EL ESTADO DEL PROYECTO
+    DEVUELVE LOS DATOS MODIFICADOS
+    '''
     datos_dict = convierte_csv_dict(path)
     proyecto_canc = pide_id(datos_dict)
-    proyecto_canc['Estado'] = "Cancelado"
+    if proyecto_canc != "ERROR ID NO ENCONTRADA":
+        proyecto_canc['Estado'] = "Cancelado"
+    else:
+        print('ERROR ID NO ENCONTRADA \n')
     return datos_dict
 
 
 def fecha_hora_actual():
+    '''
+    DEVUELVE: la fecha actual.
+    '''
     fecha_actual = datetime.now().date()
     return fecha_actual
 
 
 def opcion_menu_4(path):
+    '''
+    RECIBE: ruta de archivo csv
+    utiliza la fecha actual para comparar las fechas
+    si las fechas son mas viejas que la fecha actual se finaliza automaticamente el proyecto
+    DEVUELVE: los datos
+    '''
     datos_dict = convierte_csv_dict(path)
     fecha_actual = fecha_hora_actual()
     for proyecto in datos_dict:
-        print(proyecto['Estado'])
-        fecha = datetime.strptime((proyecto['Fecha de Fin']),'%d-%m-%Y').date()
+        fecha = datetime.strptime((proyecto['Fecha de Fin']),'%d/%m/%Y').date()
         if fecha < fecha_actual:
             proyecto['Estado'] = 'Finalizado'
+    print('ACCION REALIZADA CON EXITO')
     return datos_dict
 
+
 def opcion_menu_5(path):
+    '''
+    RECIBE: ruta de archivo csv
+    Imprime en una 'TABLA' los datos.
+    '''
     datos_dict = convierte_csv_dict(path)
     encabezados = list(datos_dict[0].keys())
     print("-"*80)
@@ -225,6 +313,7 @@ def opcion_menu_5(path):
 def opcion_menu_6(path):
     acumulador = 0
     '''
+    RECIBE: ruta de archivo csv
     Calcula e imprime el promedio de todos los proyectos
     '''
     datos_dict = convierte_csv_dict(path)
@@ -262,7 +351,7 @@ def opcion_menu_9(path):
     fecha_actual = fecha_hora_actual()
     if proyecto_retom != 'No se encontró el proyecto buscado.':
         if proyecto_retom['Estado'] == "Cancelado":
-            fecha = datetime.strptime((proyecto_retom['Fecha de Fin']),'%d-%m-%Y').date()
+            fecha = datetime.strptime((proyecto_retom['Fecha de Fin']),'%d/%m/%Y').date()
             if fecha < fecha_actual:
                 print("ERROR, no se puede dar de alta el projecto, fecha finalizada")
             else:
@@ -274,6 +363,48 @@ def opcion_menu_9(path):
     else:
         print('No se encontró el proyecto buscado')
     return datos_dict
+
+#SEGUNDA PARTE 
+def opcion_13(path:str):
+    '''
+    R. Obtener el/los proyectos activos con mayor presupuesto en donde en su descripción
+    tienen la palabra “Desarrollo” En caso de que no haya indicar error
+    '''
+    datos = convierte_csv_dict(path) 
+    mayor = 0
+    lista_mayor = []
+    for proyecto in datos:
+        if proyecto['Estado'] == 'Activo':
+            if "Desarrollo" or 'desarrollo' in proyecto['Descripcion']:
+                if float(proyecto['Presupuesto']) > mayor:
+                    mayor = float(proyecto['Presupuesto'])
+                    mayor_nombre =  proyecto['Nombre del Proyecto']
+                    lista_mayor = [proyecto['Nombre del Proyecto']]
+                #SI SON IGUALES SE GUARDA EN UNA LISTA
+                elif float(proyecto['Presupuesto']) == mayor:
+                    lista_mayor.append(proyecto['Nombre del Proyecto'])
+    if mayor == 0:
+        print("ERROR NO HAY PROYECTOS DE ESA INDOLE.")
+    else:   
+        print(f"El mayor presupuesto es/son :{lista_mayor}")
+
+#SEGUNDA PARTE
+def opcion_14(path:str):
+    '''
+    B. Mostrar los proyectos activos que duren menos de 3 años. En caso de que no haya indicar error
+    '''
+    datos = convierte_csv_dict(path)
+    lista_proyectos = []
+    for proyecto in datos:
+        fecha_inicio = datetime.strptime(proyecto['Fecha de inicio'],'%d/%m/%Y')
+        fecha_fin = datetime.strptime(proyecto['Fecha de Fin'],'%d/%m/%Y')
+        diferencia = fecha_fin.year - fecha_inicio.year
+        if diferencia < 3:
+            lista_proyectos.append(proyecto['Nombre del Proyecto'])
+    if lista_proyectos == []:
+        print("ERROR NO SE ENCONTRÓ LO BUSCADO.")
+    else:
+        print(lista_proyectos)
 
 
 def escribir_csv(datos_dict:list[dict],path:str):
@@ -310,7 +441,7 @@ def guarda_json_csv(path,path2):
 def menu_ingresos(path,path2):
     '''
     Recibe la direccion del csv y json a guardar, el cual sera actualizado cada vez que se haga una acción
-    Devuelve:(lo que imprima por consola.)
+    Devuelve:( no retorna nada solo imprime por consola.)
     '''
     datos_dict_mod = convierte_csv_dict(path)
     while True:
@@ -320,20 +451,20 @@ def menu_ingresos(path,path2):
             case "1":
                 while True:
                     sigue,datos_dict_mod = opcion_menu_1(path)
-                    #escribir_csv(datos_dict_mod,path)
+                    escribir_csv(datos_dict_mod,path)
                     if sigue == True:
                         continue
                     else:
                         break
             case "2":
                 datos_dict_mod = opcion_menu_2(path)
-                #escribir_csv(datos_dict_mod,path)
+                escribir_csv(datos_dict_mod,path)
             case "3":
                 datos_dict_mod = opcion_menu_3(path)
-                #escribir_csv(datos_dict_mod,path)
+                escribir_csv(datos_dict_mod,path)
             case "4":
                 datos_dict_mod = opcion_menu_4(path)
-                #escribir_csv(datos_dict_mod,path)
+                escribir_csv(datos_dict_mod,path)
             case "5":
                 opcion_menu_5(path)
             case "6":
@@ -345,9 +476,15 @@ def menu_ingresos(path,path2):
                 pass
             case "9":
                 datos_dict_mod = opcion_menu_9('Proyectos copy.csv')
-                #escribir_csv(datos_dict_mod,path)
+                escribir_csv(datos_dict_mod,path)
             case "12":
                 escribir_csv(datos_dict_mod,path)
                 guarda_json_csv(path,path2)
                 break
-menu_ingresos('Proyectos copy.csv','ProyectosFinalizados.json')
+            case "13":
+                opcion_13(path)
+            case "14":
+                opcion_14(path)
+            case _:
+                print("OPCION INCORRECTA")
+                continue
