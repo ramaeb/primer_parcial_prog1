@@ -116,10 +116,10 @@ def imprimir_menu():
     print("12. Salir")
 
 
-def opcion_menu_1():
-    datos_dict = convierte_csv_dict('Proyectos.csv')
+def opcion_menu_1(path:str):
+    datos_dict = convierte_csv_dict(path)
     if valida_proyectos_activos(datos_dict) == False:
-        nuevo_proyecto = ingresa_proyecto(convierte_csv_dict('Proyectos.csv'))
+        nuevo_proyecto = ingresa_proyecto(convierte_csv_dict(path))
         datos_dict.append(nuevo_proyecto)
     else:
         print('ERROR, PROYECTOS ACTIVOS SUPERAN LOS 50.')
@@ -134,42 +134,98 @@ def opcion_menu_1():
     return sigue,datos_dict
 
 
-def opcion_menu_2(datos_dict:list[dict]):
+def modificar_estado():
+    while True:
+        estado = input("Ingrese el nuevo estado: ")
+        if estado == ("Activo" or "Cancelado" or "Finalizado"):
+            return estado
+        else:
+            print("Ingrese un valor valido:")
 
+def pide_id(datos_dict):
     id_busqueda = input("Ingrese la ID del proyecto: ")
     if id_busqueda.isnumeric():
         id_busqueda = int(id_busqueda)
-    
-    print("1- Modificar nombre: ")
-    print("2- Modificar Descripcion: ")
-    print("3- Modificar Fecha de inicio: ")
-    print("4- Modificar Fecha de Fin: ")
-    print("5- Modificar Presupuesto: ")
-    print("6- Modificar Estado: ")
+        for i in range(len(datos_dict)):
+            if id_busqueda == int(datos_dict[i]["id"]):
+                proyecto_mod = datos_dict[i]
+    return proyecto_mod
+
+
+def opcion_menu_2(datos_dict:list[dict]):
+    proyecto_mod = pide_id(datos_dict)
+    print("1- Modificar nombre:")
+    print("2- Modificar Descripcion:")
+    print("3- Modificar Fecha de inicio y fin:")
+    print("4- Modificar Presupuesto:")
+    print("5- Modificar Estado:")
+    print("6- Salir:")
     opcion = input("Ingrese la opcion: ")
-    datos_dict[]
+
     while True:
         match opcion:
             case "1":
-                
+                proyecto_mod["Nombre del Proyecto"] = verifica_nombre_proyecto()
+                break
+            case "2":
+                proyecto_mod["Descripcion"] = verifica_descripcion()
+                break
+            case "3":
+                proyecto_mod["Fecha de inicio"],proyecto_mod["Fecha de Fin"] = ingreso_fecha_inicio_fin()
+                break
+            case "4":
+                proyecto_mod["Presupuesto"] = verifica_presupuesto()
+                break
+            case "5":
+                proyecto_mod["Estado"] = modificar_estado()
+                break
+            case "6":
+                break
+    return datos_dict
 
 
-def menu_ingresos(datos_dict:list[dict]):
+def opcion_menu_3(datos_dict):
+    proyecto_canc = pide_id(datos_dict)
+    proyecto_canc['Estado'] = "Cancelado"
+    return datos_dict
+
+
+def escribir_csv(datos_dict:list[dict],path:str):
+    '''
+    Pide un diccionario con datos (OJO ENCABEZADOS YA HARDCODEADOS.)
+    Pide una direccion del archivo a escribir.
+    No retorna nada, escribe el archivo en un csv para guardar datos.
+    '''
+    encabezados = ['id','Nombre del Proyecto','Descripcion','Fecha de inicio','Fecha de Fin','Presupuesto','Estado']
+    with open(path,mode='w',newline='') as archivo:
+        archivo.write(','.join(encabezados) + '\n')
+        for proyecto in datos_dict:
+            fila = []
+            for valor in proyecto.values():
+                fila.append(str(valor))
+                # funciona pero agrega una columna de más fila = archivo.write(f'{str(valor)},')
+            archivo.write(','.join(fila)+'\n')
+
+
+def menu_ingresos(path):
     while True:
         imprimir_menu()
         opcion = input("Elija su opcion: ")
         match opcion:
             case "1":
                 while True:
-                    sigue,datos_dict = opcion_menu_1()
+                    sigue,datos_dict_mod = opcion_menu_1(path)
+                    print(datos_dict_mod)
+                    escribir_csv(datos_dict_mod,path)
                     if sigue == True:
                         continue
                     else:
                         break
             case "2":
-                pass
+                datos_dict = opcion_menu_2(datos_dict)
+                print(datos_dict)
             case "3":
-                pass
+                datos_dict = opcion_menu_3(datos_dict)
             case "4":
                 pass
             case "5":
@@ -184,4 +240,5 @@ def menu_ingresos(datos_dict:list[dict]):
                 pass
             case "12":
                 break
-menu_ingresos()
+
+menu_ingresos('Proyectos copy.csv')
