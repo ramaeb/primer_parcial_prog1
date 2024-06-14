@@ -1,4 +1,5 @@
 from datetime import datetime
+import json
 def convierte_csv_dict(path:str):
     '''
     Devuelve DATOS
@@ -291,10 +292,24 @@ def escribir_csv(datos_dict:list[dict],path:str):
                 # funciona pero agrega una columna de más fila = archivo.write(f'{str(valor)},')
             archivo.write(','.join(fila)+'\n')
 
-
-def menu_ingresos(path):
+def guarda_json_csv(path,path2):
     '''
-    Recibe la direccion del csv, el cual sera actualizado cada vez que se haga una acción
+    Recibe 2 direcciones, la del csv y la del json a escribir.
+    NO DEVUELVE NADA
+    Solo escribe el json con los proyectos finalizados.
+    '''
+    datos_dict = convierte_csv_dict(path)
+    lista_json = []
+    for proyecto in datos_dict:
+        if proyecto["Estado"] == "Finalizado":
+            lista_json.append(proyecto)
+    with open(path2, 'w') as archivo:
+        json.dump(lista_json, archivo,indent=4 )
+
+
+def menu_ingresos(path,path2):
+    '''
+    Recibe la direccion del csv y json a guardar, el cual sera actualizado cada vez que se haga una acción
     Devuelve:(lo que imprima por consola.)
     '''
     datos_dict_mod = convierte_csv_dict(path)
@@ -333,5 +348,6 @@ def menu_ingresos(path):
                 #escribir_csv(datos_dict_mod,path)
             case "12":
                 escribir_csv(datos_dict_mod,path)
+                guarda_json_csv(path,path2)
                 break
-menu_ingresos('Proyectos copy.csv')
+menu_ingresos('Proyectos copy.csv','ProyectosFinalizados.json')
